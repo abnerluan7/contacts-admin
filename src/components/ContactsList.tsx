@@ -11,7 +11,6 @@ const ContactsList: React.FC = () => {
   const [currentContact, setCurrentContact] = useState<IContactsData | null>(
     null
   )
-  const [currentIndex, setCurrentIndex] = useState<number>(-1)
 
   useEffect(() => {
     retrieveContacts()
@@ -25,9 +24,8 @@ const ContactsList: React.FC = () => {
       .catch(() => {})
   }
 
-  const setActiveContact = (Contact: IContactsData, index: number) => {
+  const setActiveContact = (Contact: IContactsData) => {
     setCurrentContact(Contact)
-    setCurrentIndex(index)
   }
 
   return (
@@ -37,7 +35,7 @@ const ContactsList: React.FC = () => {
 
         <ul>
           {Contacts?.map((Contact, index) => (
-            <li onClick={() => setActiveContact(Contact, index)} key={index}>
+            <li onClick={() => setActiveContact(Contact)} key={index}>
               {Contact.name}
             </li>
           ))}
