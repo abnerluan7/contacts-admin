@@ -49,14 +49,14 @@ const ContactsList: React.FC = () => {
             <h4>Contact</h4>
             <div>
               <label>
-                <strong>Title:</strong>
-              </label>{' '}
+                <strong>Title: </strong>
+              </label>
               {currentContact.name}
             </div>
             <div>
               <label>
-                <strong>Description:</strong>
-              </label>{' '}
+                <strong>Description: </strong>
+              </label>
               {currentContact.phone}
             </div>
 
