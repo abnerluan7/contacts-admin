@@ -52,14 +52,17 @@
         "groups": [
           "/^react/",
           "module",
+          "/^@/layouts/",
           "/^@/services/",
           "/^@/types/",
           "/^@/pages/",
           "/^@/components/",
+          "/^@/hooks/",
           ["parent", "sibling", "index"]
         ],
         "alphabetize": { "order": "asc", "ignoreCase": false }
       }
-    ]
+    ],
+    "@typescript-eslint/consistent-type-assertions": "off"
   }
 }

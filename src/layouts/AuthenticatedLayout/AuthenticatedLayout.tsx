@@ -1,11 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import { useContacts } from '@/hooks/useContacts'
+
 type Props = {
   children: React.ReactNode
 }
 
 const AuthenticatedLayout = ({ children }: Props) => {
+  const { isLoading } = useContacts()
   return (
     <div>
       <nav>
@@ -18,8 +21,8 @@ const AuthenticatedLayout = ({ children }: Props) => {
           </li>
         </div>
       </nav>
-
-      <div>{children}</div>
+      {isLoading && <p>loading...</p>}
+      {!isLoading && <div>{children}</div>}
     </div>
   )
 }

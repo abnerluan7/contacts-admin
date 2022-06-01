@@ -7,16 +7,20 @@ import AddContact from '@/pages/AddContact'
 import Contact from '@/pages/Contact'
 import ContactsList from '@/pages/ContactsList'
 
+import { ContactsProvider } from '@/hooks/useContacts'
+
 const App: React.FC = () => {
   return (
-    <AuthenticatedLayout>
-      <Routes>
-        <Route path='/' element={<ContactsList />} />
-        <Route path='/contacts' element={<ContactsList />} />
-        <Route path='/add' element={<AddContact />} />
-        <Route path='/contacts/:id' element={<Contact />} />
-      </Routes>
-    </AuthenticatedLayout>
+    <ContactsProvider>
+      <AuthenticatedLayout>
+        <Routes>
+          <Route path='/' element={<ContactsList />} />
+          <Route path='/contacts' element={<ContactsList />} />
+          <Route path='/add' element={<AddContact />} />
+          <Route path='/contacts/:id' element={<Contact />} />
+        </Routes>
+      </AuthenticatedLayout>
+    </ContactsProvider>
   )
 }
 

@@ -1,28 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import ContactDataService from '@/services/ContactService'
-
 import { IContactsData } from '@/types/Contacts'
-import { HttpResponse } from '@/types/Http'
+
+import { useContacts } from '@/hooks/useContacts'
 
 const ContactsList: React.FC = () => {
-  const [Contacts, setContacts] = useState<IContactsData[]>([])
   const [currentContact, setCurrentContact] = useState<IContactsData | null>(
     null
   )
 
-  useEffect(() => {
-    retrieveContacts()
-  }, [])
-
-  const retrieveContacts = () => {
-    ContactDataService.getAll()
-      .then((response: HttpResponse<IContactsData[]>) => {
-        setContacts(response.data)
-      })
-      .catch(() => {})
-  }
+  const { contacts } = useContacts()
 
   const setActiveContact = (Contact: IContactsData) => {
     setCurrentContact(Contact)
@@ -34,9 +22,9 @@ const ContactsList: React.FC = () => {
         <h4>Contacts List</h4>
 
         <ul>
-          {Contacts?.map((Contact, index) => (
-            <li onClick={() => setActiveContact(Contact)} key={index}>
-              {Contact.name}
+          {contacts?.map((contact, index) => (
+            <li onClick={() => setActiveContact(contact)} key={index}>
+              {contact.name}
             </li>
           ))}
         </ul>
