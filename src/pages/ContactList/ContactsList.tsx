@@ -19,14 +19,14 @@ const ContactsList: React.FC = () => {
   const { contacts } = useContacts()
 
   const editContact = (contact: IContactsData) => {
-    navigate(`/Contacts/${contact.id}`)
+    navigate(`/contacts/${contact.id}`)
   }
 
   return (
     <Container>
       <TypographyComponent type='h1'>Directory</TypographyComponent>
 
-      {contacts?.map((contact, index) => (
+      {contacts.data?.map((contact, index) => (
         <CardComponent
           onClick={() => editContact(contact)}
           key={index}

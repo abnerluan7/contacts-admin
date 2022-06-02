@@ -4,7 +4,7 @@ import { IContactsData } from '@/types/Contacts'
 import { HttpResponse } from '@/types/Http'
 
 const getAll = async (): Promise<HttpResponse<IContactsData[]>> => {
-  return http.get<IContactsData[]>('/contacts')
+  return await http.get<IContactsData[]>('/contacts')
 }
 
 const get = async (id: number): Promise<HttpResponse<IContactsData>> => {
