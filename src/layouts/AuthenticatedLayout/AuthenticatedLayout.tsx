@@ -1,7 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 import { useContacts } from '@/hooks/useContacts'
+
+import { Container } from './styles'
 
 type Props = {
   children: React.ReactNode
@@ -10,8 +12,8 @@ type Props = {
 const AuthenticatedLayout = ({ children }: Props) => {
   const { isLoading } = useContacts()
   return (
-    <div>
-      <nav>
+    <Container>
+      {/* <nav>
         <div>
           <li>
             <Link to={'/contacts'}>Contacts</Link>
@@ -20,10 +22,10 @@ const AuthenticatedLayout = ({ children }: Props) => {
             <Link to={'/add'}>Add</Link>
           </li>
         </div>
-      </nav>
+      </nav> */}
       {isLoading && <p>loading...</p>}
       {!isLoading && <div>{children}</div>}
-    </div>
+    </Container>
   )
 }
 

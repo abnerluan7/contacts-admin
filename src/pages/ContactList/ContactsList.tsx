@@ -11,6 +11,8 @@ import {
 
 import { useContacts } from '@/hooks/useContacts'
 
+import { Container, Content, TextContent } from './styles'
+
 const ContactsList: React.FC = () => {
   const navigate = useNavigate()
 
@@ -21,23 +23,29 @@ const ContactsList: React.FC = () => {
   }
 
   return (
-    <div>
+    <Container>
       <TypographyComponent type='h1'>Directory</TypographyComponent>
 
-      <div>
-        {contacts?.map((contact, index) => (
-          <CardComponent
-            onClick={() => editContact(contact)}
-            key={index}
-            solid={index % 2 === 0}
-          >
+      {contacts?.map((contact, index) => (
+        <CardComponent
+          onClick={() => editContact(contact)}
+          key={index}
+          solid={index % 2 === 0}
+        >
+          <Content>
             <AvatarComponent url={contact.avatar} />
-            <TypographyComponent type='h2'>{contact.name}</TypographyComponent>
-            <TypographyComponent type='h3'>{contact.phone}</TypographyComponent>
-          </CardComponent>
-        ))}
-      </div>
-    </div>
+            <TextContent>
+              <TypographyComponent type='h2'>
+                {contact.name}
+              </TypographyComponent>
+              <TypographyComponent type='h3'>
+                {contact.phone}
+              </TypographyComponent>
+            </TextContent>
+          </Content>
+        </CardComponent>
+      ))}
+    </Container>
   )
 }
 

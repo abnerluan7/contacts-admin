@@ -5,7 +5,7 @@ import AuthenticatedLayout from '@/layouts/AuthenticatedLayout/AuthenticatedLayo
 
 import AddContact from '@/pages/AddContact'
 import Contact from '@/pages/Contact'
-import ContactsList from '@/pages/ContactsList'
+import ContactsList from '@/pages/ContactList/ContactsList'
 
 import { ContactsProvider } from '@/hooks/useContacts'
 
