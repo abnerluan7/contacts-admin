@@ -1,59 +1,41 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { IContactsData } from '@/types/Contacts'
+
+import {
+  AvatarComponent,
+  CardComponent,
+  TypographyComponent
+} from '@/components'
 
 import { useContacts } from '@/hooks/useContacts'
 
 const ContactsList: React.FC = () => {
-  const [currentContact, setCurrentContact] = useState<IContactsData | null>(
-    null
-  )
+  const navigate = useNavigate()
 
   const { contacts } = useContacts()
 
-  const setActiveContact = (Contact: IContactsData) => {
-    setCurrentContact(Contact)
+  const editContact = (contact: IContactsData) => {
+    navigate(`/Contacts/${contact.id}`)
   }
 
   return (
     <div>
-      <div>
-        <h4>Contacts List</h4>
+      <TypographyComponent type='h1'>Directory</TypographyComponent>
 
-        <ul>
-          {contacts?.map((contact, index) => (
-            <li onClick={() => setActiveContact(contact)} key={index}>
-              {contact.name}
-            </li>
-          ))}
-        </ul>
-      </div>
       <div>
-        {currentContact ? (
-          <div>
-            <h4>Contact</h4>
-            <div>
-              <label>
-                <strong>Title: </strong>
-              </label>
-              {currentContact.name}
-            </div>
-            <div>
-              <label>
-                <strong>Description: </strong>
-              </label>
-              {currentContact.phone}
-            </div>
-
-            <Link to={`/Contacts/${currentContact.id}`}>Edit</Link>
-          </div>
-        ) : (
-          <div>
-            <br />
-            <p>Please click on a Contact...</p>
-          </div>
-        )}
+        {contacts?.map((contact, index) => (
+          <CardComponent
+            onClick={() => editContact(contact)}
+            key={index}
+            solid={index % 2 === 0}
+          >
+            <AvatarComponent url={contact.avatar} />
+            <TypographyComponent type='h2'>{contact.name}</TypographyComponent>
+            <TypographyComponent type='h3'>{contact.phone}</TypographyComponent>
+          </CardComponent>
+        ))}
       </div>
     </div>
   )
