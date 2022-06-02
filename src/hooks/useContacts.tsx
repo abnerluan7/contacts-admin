@@ -6,6 +6,8 @@ import {
   useQuery
 } from 'react-query'
 
+import { keys } from '@/helpers/queryKeys'
+
 import ContactDataService from '@/services/ContactService'
 
 import { IContactsData } from '@/types/Contacts'
@@ -26,7 +28,7 @@ const ContactsContext = createContext<TypesThisContext>({} as TypesThisContext)
 
 export const ContactsProvider: React.FC<MyProps> = ({ children }) => {
   const { isLoading, data, refetch } = useQuery<HttpResponse<IContactsData[]>>(
-    'getAllContact',
+    keys.CONTACT_LIST,
     ContactDataService.getAll
   )
 

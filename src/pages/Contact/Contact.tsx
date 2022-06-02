@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 
+import { schema } from '@/helpers/validators'
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
 
 import ContactDataService from '@/services/ContactService'
 
@@ -13,13 +13,6 @@ import { HttpResponse } from '@/types/Http'
 import { TypographyComponent } from '@/components'
 
 import { Container } from './styles'
-
-const schema = yup
-  .object({
-    name: yup.string().required(),
-    phone: yup.string().required()
-  })
-  .required()
 
 const Contact: React.FC = () => {
   const {
