@@ -1,6 +1,6 @@
 import React from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
 
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout/AuthenticatedLayout'
 
@@ -10,7 +10,7 @@ import ContactsList from '@/pages/ContactList/ContactsList'
 
 import { ContactsProvider } from '@/hooks/useContacts'
 const queryClient = new QueryClient()
-const App: React.FC = () => {
+const Root: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ContactsProvider>
@@ -24,6 +24,14 @@ const App: React.FC = () => {
         </AuthenticatedLayout>
       </ContactsProvider>
     </QueryClientProvider>
+  )
+}
+
+const App: React.FC = () => {
+  return (
+    <BrowserRouter>
+      <Root />
+    </BrowserRouter>
   )
 }
 
