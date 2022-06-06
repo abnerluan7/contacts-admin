@@ -16,10 +16,11 @@ import { Container, Content, TextContent } from './styles'
 const ContactsList: React.FC = () => {
   const navigate = useNavigate()
 
-  const { contacts } = useContacts()
+  const { contacts, setContact } = useContacts()
 
   const editContact = (contact: IContactsData) => {
-    navigate(`/contacts/${contact.id}`)
+    setContact(contact)
+    navigate(`/contact`)
   }
 
   return (

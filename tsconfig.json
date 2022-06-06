@@ -23,5 +23,5 @@
     "typeRoots": ["src/app/main/types", "node_modules/@types"]
   },
   "include": ["src"],
-  "exclude": ["src/app/main/tests/cypress", "*.config.ts"]
+  "exclude": ["*.config.ts"]
 }

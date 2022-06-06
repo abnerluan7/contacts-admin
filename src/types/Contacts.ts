@@ -1,7 +1,10 @@
-export interface IContactsData {
+export type ContactsData = {
   avatar?: string
   createdAt?: string
-  id?: number | null
   name: string
   phone: string
+}
+
+export interface IContactsData extends ContactsData {
+  id: number
 }

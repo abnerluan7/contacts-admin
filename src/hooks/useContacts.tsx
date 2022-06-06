@@ -1,4 +1,10 @@
-import { createContext, useContext } from 'react'
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useState
+} from 'react'
 import {
   QueryObserverResult,
   RefetchOptions,
@@ -10,7 +16,7 @@ import { keys } from '@/helpers/queryKeys'
 
 import ContactDataService from '@/services/ContactService'
 
-import { IContactsData } from '@/types/Contacts'
+import { ContactsData, IContactsData } from '@/types/Contacts'
 import { HttpResponse } from '@/types/Http'
 interface TypesThisContext {
   isLoading: boolean
@@ -18,22 +24,71 @@ interface TypesThisContext {
   refetch: <TPageData>(
     options?: RefetchOptions & RefetchQueryFilters<TPageData>
   ) => Promise<QueryObserverResult<HttpResponse<IContactsData[], any>, unknown>>
+  isSuccess: boolean
+  addNewContact: (contact: ContactsData) => Promise<boolean>
+  updateContact: (id: number, contact: ContactsData) => Promise<boolean>
+  deleteContact: (id: number) => Promise<boolean>
+  contact: IContactsData
+  setContact: Dispatch<SetStateAction<IContactsData>>
 }
 
-interface MyProps {
+export interface MyProps {
   children?: React.ReactNode
 }
 
 const ContactsContext = createContext<TypesThisContext>({} as TypesThisContext)
 
 export const ContactsProvider: React.FC<MyProps> = ({ children }) => {
-  const { isLoading, data, refetch } = useQuery<HttpResponse<IContactsData[]>>(
-    keys.CONTACT_LIST,
-    ContactDataService.getAll
-  )
+  const { isLoading, data, refetch, isSuccess } = useQuery<
+    HttpResponse<IContactsData[]>
+  >(keys.CONTACT_LIST, ContactDataService.getAll)
+
+  const [contact, setContact] = useState<IContactsData>()
+
+  const addNewContact = async (contact: ContactsData): Promise<boolean> => {
+    return await ContactDataService.create(contact)
+      .then(async () => {
+        refetch()
+        return true
+      })
+      .catch(() => false)
+  }
+
+  const updateContact = async (
+    id: number,
+    contact: ContactsData
+  ): Promise<boolean> => {
+    return await ContactDataService.update(id, contact)
+      .then(async () => {
+        refetch()
+        return true
+      })
+      .catch(() => false)
+  }
+
+  const deleteContact = async (id: number): Promise<boolean> => {
+    return await ContactDataService.remove(id)
+      .then(async () => {
+        refetch()
+        return true
+      })
+      .catch(() => false)
+  }
 
   return (
-    <ContactsContext.Provider value={{ isLoading, contacts: data, refetch }}>
+    <ContactsContext.Provider
+      value={{
+        isLoading,
+        contacts: data,
+        refetch,
+        isSuccess,
+        addNewContact,
+        updateContact,
+        deleteContact,
+        contact,
+        setContact
+      }}
+    >
       {children}
     </ContactsContext.Provider>
   )

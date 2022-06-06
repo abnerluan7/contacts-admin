@@ -1,54 +1,45 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 import { schema } from '@/helpers/validators'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-import ContactDataService from '@/services/ContactService'
-
-import { IContactsData } from '@/types/Contacts'
-import { HttpResponse } from '@/types/Http'
+import { ContactsData } from '@/types/Contacts'
 
 import { TypographyComponent } from '@/components'
+
+import { useContacts } from '@/hooks/useContacts'
 
 import { Container } from './styles'
 
 const Contact: React.FC = () => {
+  const { contact } = useContacts()
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    setValue
-  } = useForm<IContactsData>({
-    resolver: yupResolver(schema)
+    formState: { errors }
+  } = useForm<ContactsData>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      name: contact.name,
+      phone: contact.phone
+    }
   })
-  const { id } = useParams()
   const navigate = useNavigate()
 
-  const getContact = (id: number) => {
-    ContactDataService.get(id)
-      .then((response: HttpResponse<IContactsData>) => {
-        setValue('name', response.data.name)
-        setValue('phone', response.data.phone)
-      })
-      .catch(() => {})
-  }
+  const { updateContact, deleteContact } = useContacts()
 
-  useEffect(() => {
-    if (id) getContact(parseInt(id))
-  }, [id])
-
-  const updateContact = (data: IContactsData) => {
-    ContactDataService.update(parseInt(id), data)
+  const updateContactHandle = (data: ContactsData) => {
+    updateContact(contact.id, data)
       .then(() => {
         navigate('/contacts')
       })
       .catch(() => {})
   }
 
-  const deleteContact = () => {
-    ContactDataService.remove(parseInt(id))
+  const deleteContactHandle = () => {
+    deleteContact(contact.id)
       .then(() => {
         navigate('/contacts')
       })
@@ -58,21 +49,21 @@ const Contact: React.FC = () => {
   return (
     <Container>
       <TypographyComponent type={'h1'}>Contact</TypographyComponent>
-      <form onSubmit={handleSubmit(updateContact)}>
+      <form onSubmit={handleSubmit(updateContactHandle)}>
         <div>
           <label htmlFor='name'>name</label>
-          <input type='text' id='name' {...register('name')} />
+          <input type='text' id='name' required {...register('name')} />
           <p>{errors.name?.message}</p>
         </div>
         <div>
           <label htmlFor='phone'>phone</label>
-          <input type='text' id='phone' {...register('phone')} />
+          <input type='text' id='phone' required {...register('phone')} />
           <p>{errors.phone?.message}</p>
         </div>
         <button type='submit'>Update</button>
       </form>
 
-      <button onClick={deleteContact}>Delete</button>
+      <button onClick={deleteContactHandle}>Delete</button>
 
       <Link to={'/contacts'}>Cancel</Link>
     </Container>

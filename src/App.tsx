@@ -4,7 +4,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom'
 
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout/AuthenticatedLayout'
 
-import AddContact from '@/pages/AddContact'
+import AddContact from '@/pages/AddContact/AddContact'
 import Contact from '@/pages/Contact/Contact'
 import ContactsList from '@/pages/ContactList/ContactsList'
 
@@ -19,7 +19,7 @@ const Root: React.FC = () => {
             <Route path='/' element={<ContactsList />} />
             <Route path='/contacts' element={<ContactsList />} />
             <Route path='/add' element={<AddContact />} />
-            <Route path='/contacts/:id' element={<Contact />} />
+            <Route path='/contact' element={<Contact />} />
           </Routes>
         </AuthenticatedLayout>
       </ContactsProvider>

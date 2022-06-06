@@ -4,11 +4,10 @@
       "version": "detect"
     }
   },
-  "plugins": ["react", "import-helpers", "prettier", "cypress"],
+  "plugins": ["react", "import-helpers", "prettier"],
   "extends": [
     "standard-with-typescript",
     "plugin:react/recommended",
-    "plugin:cypress/recommended",
     "plugin:prettier/recommended",
     "eslint-config-prettier"
   ],
@@ -17,7 +16,6 @@
     "project": "./tsconfig-eslint.json"
   },
   "env": {
-    "cypress/globals": true
   },
   "rules": {
     "prettier/prettier": [

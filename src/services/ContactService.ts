@@ -1,6 +1,6 @@
 import http from '@/infra/http-common'
 
-import { IContactsData } from '@/types/Contacts'
+import { ContactsData, IContactsData } from '@/types/Contacts'
 import { HttpResponse } from '@/types/Http'
 
 const getAll = async (): Promise<HttpResponse<IContactsData[]>> => {
@@ -12,14 +12,14 @@ const get = async (id: number): Promise<HttpResponse<IContactsData>> => {
 }
 
 const create = async (
-  data: IContactsData
+  data: ContactsData
 ): Promise<HttpResponse<IContactsData>> => {
   return http.post<IContactsData>('/contacts', data)
 }
 
 const update = async (
   id: number,
-  data: IContactsData
+  data: ContactsData
 ): Promise<HttpResponse<IContactsData>> => {
   return http.put<any>(`/contacts/${id}`, data)
 }

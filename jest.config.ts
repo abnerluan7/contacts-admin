@@ -108,7 +108,7 @@ export default {
   // resetModules: false,
 
   // A path to a custom resolver
-  resolver: '<rootDir>/src/test/resolver.ts',
+  resolver: '<rootDir>/src/test/resolver.js',
 
   // Automatically restore mock state and implementation before every test
   // restoreMocks: false,

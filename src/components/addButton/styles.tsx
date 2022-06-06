@@ -24,5 +24,6 @@ export const Button = styled.button`
   white-space: nowrap;
 
   left: 80vw;
+  bottom: 10vh;
   position: fixed;
 `
