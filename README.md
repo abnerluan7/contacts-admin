@@ -17,8 +17,6 @@ In the project directory, you can run:
 yarn
 ```
 
-or
-
 ### Compiles and hot-reloads for development
 
 ```
@@ -45,3 +43,6 @@ yarn test
 ### Analytics
 
 Firebase Analytics is implemented
+
+### Git
+For commit you need to brighten eslint
