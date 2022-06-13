@@ -1,4 +1,9 @@
-### Set port
+### Use Yarn
+
+```
+have a problem with npm for the eslint and ts dependencies
+```
+### Set Env
 
 ```
 cp .env.example .env.local
@@ -9,18 +14,12 @@ cp .env.example .env.local
 In the project directory, you can run:
 
 ```
-npm install
-# or
-yarn install
+yarn
 ```
-
-or
 
 ### Compiles and hot-reloads for development
 
 ```
-npm run dev
-# or
 yarn dev
 ```
 
@@ -31,7 +30,19 @@ The page will reload if you make edits.
 ### Tests
 
 ```
-npm run test
-# or
 yarn test
 ```
+
+
+### Deploy
+
+```
+yarn test
+```
+
+### Analytics
+
+Firebase Analytics is implemented
+
+### Git
+For commit you need to brighten eslint

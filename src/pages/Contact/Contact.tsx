@@ -33,7 +33,7 @@ const Contact: React.FC = () => {
   const updateContactHandle = (data: ContactsData) => {
     updateContact(contact.id, data)
       .then(() => {
-        navigate('/contacts')
+        navigate('/')
       })
       .catch(() => {})
   }
@@ -41,7 +41,7 @@ const Contact: React.FC = () => {
   const deleteContactHandle = () => {
     deleteContact(contact.id)
       .then(() => {
-        navigate('/contacts')
+        navigate('/')
       })
       .catch(() => {})
   }
