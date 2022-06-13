@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { schema } from '@/helpers/validators'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -64,8 +64,6 @@ const Contact: React.FC = () => {
       </form>
 
       <button onClick={deleteContactHandle}>Delete</button>
-
-      <Link to={'/contacts'}>Cancel</Link>
     </Container>
   )
 }
