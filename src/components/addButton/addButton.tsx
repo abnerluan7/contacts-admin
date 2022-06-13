@@ -7,7 +7,7 @@ const AddButton = () => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const newContact = () => {
-    navigate(pathname === '/add' ? '/contacts' : '/add')
+    navigate(pathname === '/' ? '/add' : '/')
   }
   return (
     <Button onClick={newContact}>

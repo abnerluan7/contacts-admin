@@ -13,7 +13,7 @@ const firebaseConfig = {
   measurementId: 'G-KEC60Z1KR1'
 }
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig)
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const analytics = getAnalytics(app)
+
+analytics.app.automaticDataCollectionEnabled = true
