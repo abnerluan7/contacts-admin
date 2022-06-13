@@ -23,7 +23,11 @@ export const Button = styled.button`
   touch-action: manipulation;
   white-space: nowrap;
 
-  left: 80vw;
+  left: 84vw;
   bottom: 10vh;
   position: fixed;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `

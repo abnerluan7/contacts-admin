@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 const DuplicatePackageCheckerPlugin = require('@cerner/duplicate-package-checker-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
@@ -77,14 +76,7 @@ module.exports = merge(
         favicon: './public/favicon.ico',
         cache: true
       }),
-      new DuplicatePackageCheckerPlugin(),
-      new CopyPlugin({
-        patterns: [
-          { from: 'public/assets', to: 'assets' },
-          { from: 'public/locales', to: 'locales' },
-          { from: 'public/robots.txt', to: 'robots.txt' }
-        ]
-      })
+      new DuplicatePackageCheckerPlugin()
     ]
   }
 )

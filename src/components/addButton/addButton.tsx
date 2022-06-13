@@ -1,3 +1,4 @@
+import { AiOutlineUserAdd, AiOutlineUnorderedList } from 'react-icons/ai'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 import { Button } from './styles'
@@ -10,7 +11,7 @@ const AddButton = () => {
   }
   return (
     <Button onClick={newContact}>
-      {pathname === '/add' ? 'Contacts' : 'Add'}
+      {pathname === '/' ? <AiOutlineUserAdd /> : <AiOutlineUnorderedList />}
     </Button>
   )
 }

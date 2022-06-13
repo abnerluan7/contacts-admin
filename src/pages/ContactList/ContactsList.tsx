@@ -25,7 +25,7 @@ const ContactsList: React.FC = () => {
 
   return (
     <Container>
-      <TypographyComponent type='h1'>Directory</TypographyComponent>
+      <TypographyComponent type='h1'>Contact List</TypographyComponent>
 
       {contacts.data?.map((contact, index) => (
         <CardComponent

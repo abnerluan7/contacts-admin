@@ -21,7 +21,8 @@ export const Card = styled.button`
     p.solid ? '0px 4px 4px rgba(0, 0, 0, 0.25)' : 'none'};
   border-radius: 8px;
   border: 0 none;
-  margin: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 
   &:active {
     background: ${theme.palette.secondary.main};
