@@ -8,9 +8,17 @@ jobs:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repo
+        uses: actions/checkout@main
+      - name: Install Dependencies
+        run: npm install
+      - name: Production Build
+        run: npm run build
+      - name: Production Build
       - uses: actions/checkout@v2
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PAGABNER7 }}'
+          channelId: live
           projectId: pagabner7
