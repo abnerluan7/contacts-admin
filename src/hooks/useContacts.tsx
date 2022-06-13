@@ -51,10 +51,7 @@ export const ContactsProvider: React.FC<MyProps> = ({ children }) => {
         refetch()
         return true
       })
-      .catch((error) => {
-        console.log(error.request)
-        return false
-      })
+      .catch(() => false)
   }
 
   const updateContact = async (
