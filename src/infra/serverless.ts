@@ -1,11 +1,8 @@
+/* eslint-disable no-unused-vars */
 // Import the functions you need from the SDKs you need
 import { getAnalytics } from 'firebase/analytics'
 import { initializeApp } from 'firebase/app'
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyBrU0ZuBwIuZAf4hDSRonUhCLNqP2qvR9s',
   authDomain: 'pagabner7.firebaseapp.com',
@@ -18,4 +15,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const analytics = getAnalytics(app)
