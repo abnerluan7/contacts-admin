@@ -6,15 +6,14 @@ import { renderHook, act } from '@testing-library/react-hooks'
 import { ContactsProvider, useContacts, MyProps } from './useContacts'
 
 describe('App Contacts List', () => {
+  const queryClient = new QueryClient()
+  const wrapper = ({ children }: MyProps) => (
+    <QueryClientProvider client={queryClient}>
+      <ContactsProvider>{children}</ContactsProvider>
+    </QueryClientProvider>
+  )
+  const { result } = renderHook(() => useContacts(), { wrapper })
   it('should render list contacts', async () => {
-    const queryClient = new QueryClient()
-    const wrapper = ({ children }: MyProps) => (
-      <QueryClientProvider client={queryClient}>
-        <ContactsProvider>{children}</ContactsProvider>
-      </QueryClientProvider>
-    )
-    const { result } = renderHook(() => useContacts(), { wrapper })
-
     await waitFor(() => {
       if (result.current.isLoading) {
         expect(result.current.isLoading).toBeTruthy()
@@ -23,19 +22,10 @@ describe('App Contacts List', () => {
       }
     })
   })
-})
 
-describe('Add Contacts to List', () => {
   it('should be able to add new contact to the list', () => {
-    const queryClient = new QueryClient()
-    const wrapper = ({ children }: MyProps) => (
-      <QueryClientProvider client={queryClient}>
-        <ContactsProvider>{children}</ContactsProvider>
-      </QueryClientProvider>
-    )
-    const { result } = renderHook(() => useContacts(), { wrapper })
     const contact = {
-      name: 'abner luan',
+      name: 'abner',
       phone: '5562993288256'
     }
     act(() => {
@@ -44,18 +34,8 @@ describe('Add Contacts to List', () => {
         .then((response) => expect(response).toBeTruthy())
     })
   })
-})
 
-describe('Remove the first Contact to List', () => {
   it('should remove contact in the first position', async () => {
-    const queryClient = new QueryClient()
-    const wrapper = ({ children }: MyProps) => (
-      <QueryClientProvider client={queryClient}>
-        <ContactsProvider>{children}</ContactsProvider>
-      </QueryClientProvider>
-    )
-    const { result } = renderHook(() => useContacts(), { wrapper })
-
     await waitFor(() => {
       if (result.current.isLoading) {
         expect(result.current.isLoading).toBeTruthy()
@@ -68,18 +48,8 @@ describe('Remove the first Contact to List', () => {
       }
     })
   })
-})
 
-describe('Update the first Contact to List', () => {
   it('should update contact in the first position', async () => {
-    const queryClient = new QueryClient()
-    const wrapper = ({ children }: MyProps) => (
-      <QueryClientProvider client={queryClient}>
-        <ContactsProvider>{children}</ContactsProvider>
-      </QueryClientProvider>
-    )
-    const { result } = renderHook(() => useContacts(), { wrapper })
-
     await waitFor(() => {
       if (result.current.isLoading) {
         expect(result.current.isLoading).toBeTruthy()
