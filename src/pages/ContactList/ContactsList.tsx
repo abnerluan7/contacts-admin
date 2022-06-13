@@ -3,15 +3,11 @@ import { useNavigate } from 'react-router-dom'
 
 import { IContactsData } from '@/types/Contacts'
 
-import {
-  AvatarComponent,
-  CardComponent,
-  TypographyComponent
-} from '@/components'
+import { CardComponent, Contact, TypographyComponent } from '@/components'
 
 import { useContacts } from '@/hooks/useContacts'
 
-import { Container, Content, TextContent } from './styles'
+import { Container } from './styles'
 
 const ContactsList: React.FC = () => {
   const navigate = useNavigate()
@@ -33,17 +29,7 @@ const ContactsList: React.FC = () => {
           key={index}
           solid={index % 2 === 0}
         >
-          <Content>
-            <AvatarComponent url={contact.avatar} />
-            <TextContent>
-              <TypographyComponent type='h2'>
-                {contact.name}
-              </TypographyComponent>
-              <TypographyComponent type='h3'>
-                {contact.phone}
-              </TypographyComponent>
-            </TextContent>
-          </Content>
+          <Contact contact={contact} />
         </CardComponent>
       ))}
     </Container>
