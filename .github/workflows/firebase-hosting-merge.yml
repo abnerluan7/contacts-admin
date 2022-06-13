@@ -17,4 +17,3 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PAGABNER7 }}'
           channelId: live
           projectId: pagabner7
-          path: "./dist"
