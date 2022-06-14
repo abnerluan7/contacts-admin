@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { theme } from '@/layouts/theme'
+
 type MyProps = {
   active: boolean
 }
@@ -16,10 +18,24 @@ export const Content = styled.div<MyProps>`
 
 export const List = styled.div<MyProps>`
   width: ${(p) => (p.active ? '40%' : '80vw')};
+  @media (max-width: 820px) {
+    width: 100%;
+  }
 `
 
 export const Edit = styled.div`
   width: 60%;
+  @media (max-width: 820px) {
+    position: absolute;
+    width: 90vw;
+    height: 60vh;
+    background-color: ${theme.palette.background.default};
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+
+    box-shadow: '0px 4px 4px rgba(0, 0, 0, 0.25)';
+  }
 `
 
 export const EditContent = styled.div`

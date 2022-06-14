@@ -8,7 +8,7 @@ interface MyProps {
   contact: IContactsData
 }
 
-const Contact: React.FC<MyProps> = ({ contact }) => {
+const ContactComponent: React.FC<MyProps> = ({ contact }) => {
   return (
     <Content>
       <AvatarComponent url={contact.avatar} />
@@ -20,4 +20,4 @@ const Contact: React.FC<MyProps> = ({ contact }) => {
   )
 }
 
-export default Contact
+export default ContactComponent
