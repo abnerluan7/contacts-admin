@@ -1,69 +1,50 @@
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-
-import { schema } from '@/helpers/validators'
-import { yupResolver } from '@hookform/resolvers/yup'
+import React, { useCallback } from 'react'
+import { AiOutlineCloseCircle, AiOutlineDelete } from 'react-icons/ai'
 
 import { ContactsData } from '@/types/Contacts'
 
-import { TypographyComponent } from '@/components'
+import { FormContact } from '@/components'
 
 import { useContacts } from '@/hooks/useContacts'
 
-import { Container } from './styles'
-
+import { CloseButton, Container, DeleteButton } from './styles'
 const Contact: React.FC = () => {
   const { contact } = useContacts()
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<ContactsData>({
-    resolver: yupResolver(schema),
-    defaultValues: {
-      name: contact.name,
-      phone: contact.phone
-    }
-  })
-  const navigate = useNavigate()
 
-  const { updateContact, deleteContact } = useContacts()
+  const { updateContact, setContact, deleteContact } = useContacts()
 
-  const updateContactHandle = (data: ContactsData) => {
+  const updateContactHandle = useCallback((data: ContactsData) => {
     updateContact(contact.id, data)
       .then(() => {
-        navigate('/')
+        setContact(undefined)
       })
       .catch(() => {})
-  }
+  }, [])
 
+  const closeContact = () => {
+    setContact(undefined)
+  }
   const deleteContactHandle = () => {
     deleteContact(contact.id)
       .then(() => {
-        navigate('/')
+        setContact(undefined)
       })
       .catch(() => {})
   }
 
   return (
     <Container>
-      <TypographyComponent type={'h1'}>Contact</TypographyComponent>
-      <form onSubmit={handleSubmit(updateContactHandle)}>
-        <div>
-          <label htmlFor='name'>name</label>
-          <input type='text' id='name' required {...register('name')} />
-          <p>{errors.name?.message}</p>
-        </div>
-        <div>
-          <label htmlFor='phone'>phone</label>
-          <input type='text' id='phone' required {...register('phone')} />
-          <p>{errors.phone?.message}</p>
-        </div>
-        <button type='submit'>Update</button>
-      </form>
-
-      <button onClick={deleteContactHandle}>Delete</button>
+      <CloseButton>
+        <DeleteButton onClick={deleteContactHandle}>
+          <AiOutlineDelete size={38} cursor='pointer' />
+        </DeleteButton>
+        <AiOutlineCloseCircle
+          onClick={closeContact}
+          size={38}
+          cursor='pointer'
+        />
+      </CloseButton>
+      <FormContact submitContactHandle={updateContactHandle} />
     </Container>
   )
 }

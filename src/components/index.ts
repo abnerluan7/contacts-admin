@@ -1,6 +1,17 @@
 import AddButton from './addButton/addButton'
 import AvatarComponent from './avatar/avatar'
+import Button from './button/button'
 import CardComponent from './card/card'
-import TypographyComponent from './typography/typography'
+import ContactComponent from './contactComponent/contactComponent'
+import FormContact from './formContact/formContact'
+import Typography from './typography/typography'
 
-export { CardComponent, TypographyComponent, AvatarComponent, AddButton }
+export {
+  CardComponent,
+  Typography,
+  AvatarComponent,
+  AddButton,
+  ContactComponent,
+  FormContact,
+  Button
+}

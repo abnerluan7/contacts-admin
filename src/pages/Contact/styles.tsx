@@ -1,11 +1,16 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 80vw;
+  margin: 16px;
 `
 
-export const Content = styled.div`
+export const CloseButton = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  justify-content: flex-end;
+`
+
+export const DeleteButton = styled.button`
+  border: 0 none;
+  background-color: transparent;
+  width: 54px;
 `

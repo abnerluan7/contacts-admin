@@ -28,7 +28,7 @@ interface TypesThisContext {
   addNewContact: (contact: ContactsData) => Promise<boolean>
   updateContact: (id: number, contact: ContactsData) => Promise<boolean>
   deleteContact: (id: number) => Promise<boolean>
-  contact: IContactsData
+  contact: IContactsData | undefined
   setContact: Dispatch<SetStateAction<IContactsData>>
 }
 
@@ -43,7 +43,7 @@ export const ContactsProvider: React.FC<MyProps> = ({ children }) => {
     HttpResponse<IContactsData[]>
   >(keys.CONTACT_LIST, ContactDataService.getAll)
 
-  const [contact, setContact] = useState<IContactsData>()
+  const [contact, setContact] = useState<IContactsData | undefined>(undefined)
 
   const addNewContact = async (contact: ContactsData): Promise<boolean> => {
     return await ContactDataService.create(contact)
