@@ -36,10 +36,9 @@ yarn test
 
 ### Deploy
 
-```
-yarn test
-```
-
+Deployment is done automatically when there is a change in the main branch.
+Using github action and firebase hosting
+Open [https://pagabner7.web.app/](https://pagabner7.web.app/)
 ### Analytics
 
 Firebase Analytics is implemented
