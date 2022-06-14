@@ -1,7 +1,7 @@
 import { IContactsData } from '@/types/Contacts'
 
 import AvatarComponent from '../avatar/avatar'
-import TypographyComponent from '../typography/typography'
+import Typography from '../typography/typography'
 import { Content, TextContent } from './styles'
 
 interface MyProps {
@@ -13,8 +13,8 @@ const Contact: React.FC<MyProps> = ({ contact }) => {
     <Content>
       <AvatarComponent url={contact.avatar} />
       <TextContent>
-        <TypographyComponent type='h2'>{contact.name}</TypographyComponent>
-        <TypographyComponent type='h3'>{contact.phone}</TypographyComponent>
+        <Typography type='h2'>{contact.name}</Typography>
+        <Typography type='h3'>{contact.phone}</Typography>
       </TextContent>
     </Content>
   )

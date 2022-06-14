@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { ContactsData } from '@/types/Contacts'
 
-import { FormContact, TypographyComponent } from '@/components'
+import { FormContact, Typography } from '@/components'
 
 import { useContacts } from '@/hooks/useContacts'
 
@@ -22,7 +22,7 @@ const AddContact: React.FC = () => {
 
   return (
     <Container>
-      <TypographyComponent type={'h1'}>Contact</TypographyComponent>
+      <Typography type={'h1'}>Contact</Typography>
       <FormContact submitContactHandle={saveContact} />
     </Container>
   )

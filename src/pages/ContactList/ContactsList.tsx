@@ -1,37 +1,41 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-
 import { IContactsData } from '@/types/Contacts'
 
-import { CardComponent, Contact, TypographyComponent } from '@/components'
+import { CardComponent, ContactComponent, Typography } from '@/components'
 
 import { useContacts } from '@/hooks/useContacts'
 
-import { Container } from './styles'
+import Contact from '../Contact/Contact'
+import { Container, Content, Edit, List } from './styles'
 
 const ContactsList: React.FC = () => {
-  const navigate = useNavigate()
+  const { contacts, setContact, contact } = useContacts()
 
-  const { contacts, setContact } = useContacts()
-
-  const editContact = (contact: IContactsData) => {
+  const showContact = (contact: IContactsData) => {
     setContact(contact)
-    navigate(`/contact`)
   }
 
   return (
     <Container>
-      <TypographyComponent type='h1'>Contact List</TypographyComponent>
+      <Typography type='h1'>Contact List</Typography>
 
-      {contacts.data?.map((contact, index) => (
-        <CardComponent
-          onClick={() => editContact(contact)}
-          key={index}
-          solid={index % 2 === 0}
-        >
-          <Contact contact={contact} />
-        </CardComponent>
-      ))}
+      <Content active={!!contact}>
+        <List active={!!contact}>
+          {contacts.data?.map((contact, index) => (
+            <CardComponent
+              onClick={() => showContact(contact)}
+              key={index}
+              solid={index % 2 === 0}
+            >
+              <ContactComponent contact={contact} />
+            </CardComponent>
+          ))}
+        </List>
+        {!!contact && (
+          <Edit>
+            <Contact />
+          </Edit>
+        )}
+      </Content>
     </Container>
   )
 }

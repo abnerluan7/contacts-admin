@@ -14,7 +14,7 @@ export const Card = styled.button`
   align-items: center;
   padding: 4px 8px;
 
-  width: 80vw;
+  width: 100%;
   height: 72px;
 
   box-shadow: ${(p: Props) =>
@@ -23,6 +23,9 @@ export const Card = styled.button`
   border: 0 none;
   margin-top: 8px;
   margin-bottom: 8px;
+  cursor: pointer;
+
+  display: block;
 
   &:active {
     background: ${theme.palette.secondary.main};

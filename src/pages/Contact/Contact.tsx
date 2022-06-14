@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { ContactsData } from '@/types/Contacts'
 
-import { FormContact, TypographyComponent } from '@/components'
+import { FormContact } from '@/components'
 
 import { useContacts } from '@/hooks/useContacts'
 
@@ -33,11 +33,7 @@ const Contact: React.FC = () => {
 
   return (
     <Container>
-      <TypographyComponent type={'h1'}>Contact</TypographyComponent>
-      <FormContact
-        contact={contact}
-        submitContactHandle={updateContactHandle}
-      />
+      <FormContact submitContactHandle={updateContactHandle} />
 
       <button onClick={deleteContactHandle}>Delete</button>
     </Container>
