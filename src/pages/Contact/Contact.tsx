@@ -13,13 +13,16 @@ const Contact: React.FC = () => {
 
   const { updateContact, setContact, deleteContact } = useContacts()
 
-  const updateContactHandle = useCallback((data: ContactsData) => {
-    updateContact(contact.id, data)
-      .then(() => {
-        setContact(undefined)
-      })
-      .catch(() => {})
-  }, [])
+  const updateContactHandle = useCallback(
+    (data: ContactsData) => {
+      updateContact(contact.id, data)
+        .then(() => {
+          setContact(undefined)
+        })
+        .catch(() => {})
+    },
+    [contact]
+  )
 
   const closeContact = () => {
     setContact(undefined)
@@ -44,7 +47,10 @@ const Contact: React.FC = () => {
           cursor='pointer'
         />
       </CloseButton>
-      <FormContact submitContactHandle={updateContactHandle} />
+      <FormContact
+        submitContactHandle={updateContactHandle}
+        contact={contact}
+      />
     </Container>
   )
 }

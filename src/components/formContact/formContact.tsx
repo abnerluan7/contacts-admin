@@ -4,9 +4,7 @@ import { useForm } from 'react-hook-form'
 import { schema } from '@/helpers/validators'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-import { ContactsData } from '@/types/Contacts'
-
-import { useContacts } from '@/hooks/useContacts'
+import { ContactsData, IContactsData } from '@/types/Contacts'
 
 import ButtonComponent from '../button/button'
 import Typography from '../typography/typography'
@@ -14,10 +12,10 @@ import { Content, Form, Input } from './styles'
 
 interface MyProps {
   submitContactHandle: (data: ContactsData) => void
+  contact?: IContactsData
 }
 
-const FormContact: React.FC<MyProps> = ({ submitContactHandle }) => {
-  const { contact } = useContacts()
+const FormContact: React.FC<MyProps> = ({ submitContactHandle, contact }) => {
   const {
     register,
     handleSubmit,

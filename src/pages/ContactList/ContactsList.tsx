@@ -18,7 +18,7 @@ const ContactsList: React.FC = () => {
     <Container>
       <Typography type='h1'>Contact List</Typography>
 
-      <Content active={!!contact}>
+      <Content>
         <List active={!!contact}>
           {contacts.data?.map((contact, index) => (
             <CardComponent
@@ -30,11 +30,9 @@ const ContactsList: React.FC = () => {
             </CardComponent>
           ))}
         </List>
-        {!!contact && (
-          <Edit>
-            <Contact />
-          </Edit>
-        )}
+        <Edit active={!!contact}>
+          <Contact />
+        </Edit>
       </Content>
     </Container>
   )
