@@ -1,7 +1,3 @@
-### Use Yarn
-
-```
-have a problem with npm for the eslint and ts dependencies
 ```
 ### Set Env
 
